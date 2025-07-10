@@ -10,7 +10,7 @@ def write_uploaded_folders(uploaded_files):
         with open(current_path, "wb") as current_file:
             current_path.write(f.getbuffer())
 
-st.title("PDF Manupulation App")
+st.title("PDF Editing App")
 st.caption("Merge, Split pdf and change Images to PDF")
 
 
@@ -22,3 +22,16 @@ with st.sidebar:
             st.write("Upload Files")
         else:
             write_uploaded_folders(uploaded_files)
+
+if st.button("Split PDF to pages"):
+    pass
+
+if st.button("Merge PDF pages"):
+    pass
+
+if st.button("Image to PDF"):
+    pass
+
+
+if st.button("PDF to Word"):
+    pass
