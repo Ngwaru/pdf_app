@@ -4,9 +4,9 @@ from PyPDF2 import PdfFileMerger, PdfWriter, PdfReader
 from PIL import Image
 
 def write_uploaded_folders(uploaded_files):
-    os.makedirs("currrent_working_dir")
+    os.makedirs("./currrent_working_dir", exist_ok=True)
     for f in uploaded_files:
-        current_path = os.path.join("currrent_working_dir", f.name)
+        current_path = os.path.join("./currrent_working_dir", f.name)
         with open(current_path, "wb") as current_file:
             current_path.write(f.getbuffer())
 
