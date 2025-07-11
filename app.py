@@ -2,6 +2,7 @@ import os
 import streamlit as st
 from PyPDF2 import PdfMerger, PdfWriter, PdfReader
 from PIL import Image
+from pdf2docx import Converter
 
 class Item_To_Change():
     def __init__(self, pdf_files, pic_files=None):
@@ -40,6 +41,15 @@ class Item_To_Change():
             image_content = Image.open(pic_file)
             image_content_converted = image_content.convert("RGB")
             image_content_converted.save(f"{output_path}\\{pic_name}.pdf")
+
+    def pdf_to_word(self):
+        os.makedirs(".\\output", exist_ok=True)
+        output_path = ".\\output"
+        
+        for file in self.pdf_files:
+            file_name = file.split("\\")[-1].split('.')[-2]
+            converter_one = Converter(file)
+            converter_one.convert(f"{output_path}\\{file_name}.docx")
 
 
 
@@ -102,4 +112,11 @@ elif st.button("Image to PDF"):
 
 
 elif st.button("PDF to Word"):
-    pass
+    if not uploaded_files:
+        st.write("Upload Files")
+    else:
+        pic_files = write_uploaded_folders(uploaded_files)
+        
+        item_to_work_on = Item_To_Change(pic_files, pic_files)
+        item_to_work_on.pdf_to_word()
+    
