@@ -61,10 +61,10 @@ class Item_To_Change():
                 Reader = PdfReader(current_file)
                 Writer = PdfWriter()
                 for page_num in range(len(Reader.pages)):
-                    page = Reader.getPage(page_num)
+                    page = Reader.pages[page_num]
                     if page_num in self.pages_to_rotate:
-                        page.rotateClockwise(self.clockwise_rotation_degrees)
-                    Writer.addPage(page)
+                        page.rotate(self.clockwise_rotation_degrees)
+                    Writer.add_page(page)
                 with open(f"{output_path}\\rotated_new_file.pdf", "wb") as new_file:
                     Writer.write(new_file)
                         
@@ -143,17 +143,18 @@ elif st.button("PDF to Word"):
         item_to_work_on = Item_To_Change(pic_files, pic_files)
         item_to_work_on.pdf_to_word()
 
-elif st.button("PDF to Word"):
+elif st.button("Rotate PDF"):
     if not uploaded_files:
         st.write("Upload Files")
     else:
         pdfs = write_uploaded_folders(uploaded_files)
-        clockwise_rotation_degrees = st.selectbox("How many degrees rotation clockwise?", ("90ᵒ", "180ᵒ", "270ᵒ"),)
-        with open(pdfs, "rb") as temp:
+        deg_to_deg = {"90ᵒ":90, "180ᵒ":180, "270ᵒ":270}
+        clockwise_rotation_degrees = deg_to_deg[st.selectbox("How many degrees rotation clockwise?", ("90ᵒ", "180ᵒ", "270ᵒ"),)]
+        with open(pdfs[0], "rb") as temp:
             total_num_pages = len(PdfReader(temp).pages)
-            set_of_all_page_numbers = (i for i in range(total_num_pages))
-            pages_to_rotate = st.selectbox("Enter page to rotate", set_of_all_page_numbers,)
-            item_to_work_on = Item_To_Change(pdfs=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
+            set_of_all_page_numbers = [i for i in range(total_num_pages)]
+            pages_to_rotate = st.multiselect("Which pages do you want to rotate?", set_of_all_page_numbers, default=set_of_all_page_numbers)
+            item_to_work_on = Item_To_Change(pdf_files=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
             item_to_work_on.rotate_pdf()
 
 if os.path.exists(".\\output"):
