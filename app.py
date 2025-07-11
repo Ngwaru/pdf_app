@@ -15,8 +15,6 @@ class Item_To_Change():
         os.makedirs(".\\output", exist_ok=True)
         output_path = ".\\output"
         for file in self.pdf_files:
-            # if file.endswith(".pdf"):
-            #     path_to_open = os.path.join(output_path, file)
             with open(file, "rb") as og_file:
                 Reader = PdfReader(og_file)
                 for page_num in range(len(Reader.pages)):
@@ -119,4 +117,11 @@ elif st.button("PDF to Word"):
         
         item_to_work_on = Item_To_Change(pic_files, pic_files)
         item_to_work_on.pdf_to_word()
-    
+
+if os.path.exists(".\\output"):
+    output_files = os.listdir(".\\output")
+    for output_file in output_files:
+        output_file_path = os.path.join(".\\output", output_file)
+        with open(output_file_path, "rb") as output_pdf_file:
+            PDFbyte = output_pdf_file.read()
+        st.download_button(label=output_file, data=PDFbyte, file_name=output_file, mime="application/octet-stream")
