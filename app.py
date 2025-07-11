@@ -5,9 +5,12 @@ from PIL import Image
 from pdf2docx import Converter
 
 class Item_To_Change():
-    def __init__(self, pdf_files, pic_files=None):
+    def __init__(self, pdf_files, pic_files=None, rotate=False, pages_to_rotate=[], clockwise_rotation_degrees=90):
         self.pdf_files = pdf_files
         self.pic_files = pic_files
+        self.rotate = rotate
+        self.pages_to_rotate = pages_to_rotate
+        self.clockwise_rotation_degrees = clockwise_rotation_degrees
 
 
 
@@ -48,6 +51,28 @@ class Item_To_Change():
             file_name = file.split("\\")[-1].split('.')[-2]
             converter_one = Converter(file)
             converter_one.convert(f"{output_path}\\{file_name}.docx")
+
+    def rotate_pdf(self):
+        os.makedirs(".\\output", exist_ok=True)
+        output_path = ".\\output"
+        if self.rotate == True:
+            with open(self.pdf_files[0], "rb") as current_file:
+
+                Reader = PdfReader(current_file)
+                Writer = PdfWriter()
+                for page_num in range(len(Reader.pages)):
+                    page = Reader.getPage(page_num)
+                    if page_num in self.pages_to_rotate:
+                        page.rotateClockwise(self.clockwise_rotation_degrees)
+                    Writer.addPage(page)
+                with open(f"{output_path}\\rotated_new_file.pdf", "wb") as new_file:
+                    Writer.write(new_file)
+                        
+
+
+
+
+
 
 
 
@@ -117,6 +142,19 @@ elif st.button("PDF to Word"):
         
         item_to_work_on = Item_To_Change(pic_files, pic_files)
         item_to_work_on.pdf_to_word()
+
+elif st.button("PDF to Word"):
+    if not uploaded_files:
+        st.write("Upload Files")
+    else:
+        pdfs = write_uploaded_folders(uploaded_files)
+        clockwise_rotation_degrees = st.selectbox("How many degrees rotation clockwise?", ("90ᵒ", "180ᵒ", "270ᵒ"),)
+        with open(pdfs, "rb") as temp:
+            total_num_pages = len(PdfReader(temp).pages)
+            set_of_all_page_numbers = (i for i in range(total_num_pages))
+            pages_to_rotate = st.selectbox("Enter page to rotate", set_of_all_page_numbers,)
+            item_to_work_on = Item_To_Change(pdfs=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
+            item_to_work_on.rotate_pdf()
 
 if os.path.exists(".\\output"):
     output_files = os.listdir(".\\output")
