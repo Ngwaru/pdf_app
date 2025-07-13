@@ -153,6 +153,7 @@ elif st.button("Rotate PDF"):
 
 if os.path.exists(".\\output"):
     output_files = os.listdir(".\\output")
+    st.markdown("<h2 style='text-align: center; color: blue;'> Download Documents below</h2>", unsafe_allow_html=True)
     for output_file in output_files:
         output_file_path = os.path.join(".\\output", output_file)
         with open(output_file_path, "rb") as output_pdf_file:
