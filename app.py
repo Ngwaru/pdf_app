@@ -92,7 +92,7 @@ def get_pic_files(uploaded_files):
                 current_file.write(f.getbuffer())
     return pic_paths
 
-st.title("PDF Editing App")
+st.markdown("<h1 style='text-align: center; color: blue;'>PDF Editing App</h1>", unsafe_allow_html=True)
 st.caption("Merge, Split pdf and change Images to PDF")
 
 
