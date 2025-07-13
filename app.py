@@ -71,12 +71,6 @@ class Item_To_Change():
 
 
 
-
-
-
-
-
-
 def write_uploaded_folders(uploaded_files):
     os.makedirs(".\\currrent_working_dir", exist_ok=True)
     pdf_paths = []
