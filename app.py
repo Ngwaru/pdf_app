@@ -150,12 +150,13 @@ elif st.button("Rotate PDF"):
         pdfs = write_uploaded_folders(uploaded_files)
         deg_to_deg = {"90ᵒ":90, "180ᵒ":180, "270ᵒ":270}
         clockwise_rotation_degrees = deg_to_deg[st.selectbox("How many degrees rotation clockwise?", ("90ᵒ", "180ᵒ", "270ᵒ"),)]
-        with open(pdfs[0], "rb") as temp:
-            total_num_pages = len(PdfReader(temp).pages)
-            set_of_all_page_numbers = [i for i in range(total_num_pages)]
-            pages_to_rotate = st.multiselect("Which pages do you want to rotate?", set_of_all_page_numbers, default=set_of_all_page_numbers)
-            item_to_work_on = Item_To_Change(pdf_files=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
-            item_to_work_on.rotate_pdf()
+        if clockwise_rotation_degrees:
+            with open(pdfs[0], "rb") as temp:
+                total_num_pages = len(PdfReader(temp).pages)
+                set_of_all_page_numbers = [i for i in range(total_num_pages)]
+                pages_to_rotate = st.multiselect("Which pages do you want to rotate?", set_of_all_page_numbers, default=set_of_all_page_numbers)
+                item_to_work_on = Item_To_Change(pdf_files=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
+                item_to_work_on.rotate_pdf()
 
 if os.path.exists(".\\output"):
     output_files = os.listdir(".\\output")
