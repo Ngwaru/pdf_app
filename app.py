@@ -1,4 +1,5 @@
 import os
+import requests
 import streamlit as st
 from PyPDF2 import PdfMerger, PdfWriter, PdfReader
 from PIL import Image
@@ -11,12 +12,14 @@ class Item_To_Change():
         self.rotate = rotate
         self.pages_to_rotate = pages_to_rotate
         self.clockwise_rotation_degrees = clockwise_rotation_degrees
+        self.activated_Method = None
 
 
 
     def splitting(self):
         os.makedirs(".\\output", exist_ok=True)
         output_path = ".\\output"
+        self.activated_Method = "splitting"
         for file in self.pdf_files:
             with open(file, "rb") as og_file:
                 Reader = PdfReader(og_file)
@@ -28,6 +31,7 @@ class Item_To_Change():
     def merge_pdf(self):
         os.makedirs(".\\output", exist_ok=True)
         output_path = ".\\output"
+        self.activated_Method = "merge_pdf"
         merger = PdfMerger(strict=False)
         for file in self.pdf_files:
             merger.append(file)
@@ -37,6 +41,7 @@ class Item_To_Change():
     def pdf_to_image(self):
         os.makedirs(".\\output", exist_ok=True)
         output_path = ".\\output"
+        self.activated_Method = "pdf_to_image"
         for pic_file in self.pic_files:
             pic_name = pic_file.split("\\")[-1].split('.')[-2]
             image_content = Image.open(pic_file)
@@ -46,7 +51,7 @@ class Item_To_Change():
     def pdf_to_word(self):
         os.makedirs(".\\output", exist_ok=True)
         output_path = ".\\output"
-        
+        self.activated_Method = "pdf_to_word"        
         for file in self.pdf_files:
             file_name = file.split("\\")[-1].split('.')[-2]
             converter_one = Converter(file)
@@ -55,6 +60,7 @@ class Item_To_Change():
     def rotate_pdf(self):
         os.makedirs(".\\output", exist_ok=True)
         output_path = ".\\output"
+        self.activated_Method = "rotate_pdf" 
         if self.rotate == True:
             with open(self.pdf_files[0], "rb") as current_file:
 
@@ -92,7 +98,7 @@ def get_pic_files(uploaded_files):
                 current_file.write(f.getbuffer())
     return pic_paths
 
-st.markdown("<h1 style='text-align: center; color: blue;'>PDF Editing App</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: blue; font-family: Arial, Helvetica, sans-serif;'>PDF Editing App</h1>", unsafe_allow_html=True)
 st.caption("Merge, Split pdf and change Images to PDF")
 
 
@@ -153,7 +159,7 @@ elif st.button("Rotate PDF"):
 
 if os.path.exists(".\\output"):
     output_files = os.listdir(".\\output")
-    st.markdown("<h2 style='text-align: center; color: blue;'> Download Documents below</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: blue; font-family: Arial, Helvetica, sans-serif;'> Download Documents below </h2>", unsafe_allow_html=True)
     for output_file in output_files:
         output_file_path = os.path.join(".\\output", output_file)
         with open(output_file_path, "rb") as output_pdf_file:
