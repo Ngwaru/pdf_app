@@ -99,6 +99,7 @@ def get_pic_files(uploaded_files):
     return pic_paths
 
 st.markdown("<h1 style='text-align: center; color: blue; font-family: Arial, Helvetica, sans-serif;'>PDF Editing App</h1>", unsafe_allow_html=True)
+
 st.caption("Merge, Split pdf and change Images to PDF")
 
 
@@ -148,15 +149,16 @@ elif st.button("Rotate PDF"):
         st.write("Upload Files")
     else:
         pdfs = write_uploaded_folders(uploaded_files)
-        deg_to_deg = {"90ᵒ":90, "180ᵒ":180, "270ᵒ":270}
-        clockwise_rotation_degrees = deg_to_deg[st.selectbox("How many degrees rotation clockwise?", ("90ᵒ", "180ᵒ", "270ᵒ"),)]
-        if clockwise_rotation_degrees:
-            with open(pdfs[0], "rb") as temp:
-                total_num_pages = len(PdfReader(temp).pages)
-                set_of_all_page_numbers = [i for i in range(total_num_pages)]
-                pages_to_rotate = st.multiselect("Which pages do you want to rotate?", set_of_all_page_numbers, default=set_of_all_page_numbers)
-                item_to_work_on = Item_To_Change(pdf_files=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
-                item_to_work_on.rotate_pdf()
+        deg_to_deg = {"0ᵒ":0,"90ᵒ":90, "180ᵒ":180, "270ᵒ":270}
+        clockwise_rotation_degrees = deg_to_deg[st.radio("How many degrees rotation clockwise?", ("0ᵒ","90ᵒ", "180ᵒ", "270ᵒ"),)]
+        
+        
+        with open(pdfs[0], "rb") as temp:
+            total_num_pages = len(PdfReader(temp).pages)
+            set_of_all_page_numbers = [i for i in range(total_num_pages)]
+            pages_to_rotate = st.multiselect("Which pages do you want to rotate?", set_of_all_page_numbers, default=set_of_all_page_numbers)
+            item_to_work_on = Item_To_Change(pdf_files=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
+            item_to_work_on.rotate_pdf()
 
 if os.path.exists(".\\output"):
     output_files = os.listdir(".\\output")
@@ -166,3 +168,14 @@ if os.path.exists(".\\output"):
         with open(output_file_path, "rb") as output_pdf_file:
             PDFbyte = output_pdf_file.read()
         st.download_button(label=output_file, data=PDFbyte, file_name=output_file, mime="application/octet-stream")
+    if st.button("Clear"):
+        for file in output_files:
+            remove_path = os.path.join(".\\output", file)
+            os.remove(remove_path)
+        if os.path.exists(".\\currrent_working_dir"):
+            input_files = os.listdir(".\\currrent_working_dir")
+        for input_file in input_files:
+            remove_path = os.path.join(".\\currrent_working_dir", input_file)
+            os.remove(remove_path)
+
+        st.cache_data.clear()
