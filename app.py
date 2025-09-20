@@ -54,8 +54,10 @@ class Item_To_Change():
         output_path = "./output"
         self.activated_Method = "pdf_to_word"        
         for file in self.pdf_files:
-            file_name = file.split("/")[-1].split('.')[-2]
+            file_name = file.split("\\")[-1].split('.')[-2]
             converter_one = Converter(file)
+            print(f"file_name: {file_name}")
+            print(f"output_path: {output_path}")
             converter_one.convert(f"{output_path}/{file_name}.docx")
 
     def rotate_pdf(self):
@@ -160,6 +162,7 @@ elif st.button("Rotate PDF"):
             pages_to_rotate = st.multiselect("Which pages do you want to rotate?", set_of_all_page_numbers, default=set_of_all_page_numbers)
             item_to_work_on = Item_To_Change(pdf_files=pdfs, rotate=True, pages_to_rotate=pages_to_rotate, clockwise_rotation_degrees=clockwise_rotation_degrees)
             item_to_work_on.rotate_pdf()
+# os.mkdir("./output", exists=True)
 
 if os.path.exists("./output"):
     output_files = os.listdir("./output")
