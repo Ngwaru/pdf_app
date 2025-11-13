@@ -41,6 +41,7 @@ Run with Docker
 
 
 📂 Project Structure
+
 <img width="753" height="232" alt="image" src="https://github.com/user-attachments/assets/68edd45c-bd6e-4749-997f-1a12e7b9367a" />
 
 
