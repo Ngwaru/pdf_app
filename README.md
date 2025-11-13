@@ -12,7 +12,7 @@ Prerequisites
 - pip
 - Docker (optional)
 Clone the Repository
-<img width="883" height="170" alt="image" src="https://github.com/user-attachments/assets/39e11d1e-f7ff-41a6-848d-d5b1e89704a6" />
+<img width="748" height="146" alt="image" src="https://github.com/user-attachments/assets/5af43398-765c-4c80-aaaa-3cff9ef090ac" />
 
 
 Install Dependencies
