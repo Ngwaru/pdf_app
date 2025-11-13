@@ -13,35 +13,30 @@ Prerequisites
 - pip
 - Docker (optional)
 Clone the Repository
-git clone https://github.com/Ngwaru/pdf_app.git
-cd pdf_app
+<img width="883" height="170" alt="image" src="https://github.com/user-attachments/assets/39e11d1e-f7ff-41a6-848d-d5b1e89704a6" />
 
 
 Install Dependencies
-pip install -r requirements.txt
+<img width="875" height="150" alt="image" src="https://github.com/user-attachments/assets/13f54f84-e49b-4cd9-b347-fe7b5f434a87" />
 
 
 
 🧪 Usage
 
 Run Locally
-python app.py
+<img width="877" height="142" alt="image" src="https://github.com/user-attachments/assets/bbf8c2d4-4861-48ec-8fd3-1084b62a41e7" />
 
 
 Visit http://localhost:5000 in your browser to access the app.
 Run with Docker
-docker build -t pdf_app .
-docker run -p 5000:5000 pdf_app
+<img width="864" height="157" alt="image" src="https://github.com/user-attachments/assets/01c18643-65e5-497b-b3c0-36466bc20ab0" />
+
 
 
 
 📂 Project Structure
-pdf_app/
-├── .github/workflows/       # GitHub Actions CI/CD workflows
-├── Dockerfile               # Docker configuration
-├── PdfMerge.ipynb           # Jupyter notebook for PDF merging
-├── app.py                   # Flask application
-├── requirements.txt         # Python dependencies
+<img width="872" height="252" alt="image" src="https://github.com/user-attachments/assets/3cd20b13-8d28-4dd6-9c00-2cb10cee0c35" />
+
 
 
 📚 Technologies Used
