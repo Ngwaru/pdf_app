@@ -1,12 +1,15 @@
-📄 PDF App
-PDF App is a lightweight Python-based web application designed to merge multiple PDF files into a single document. It provides a simple interface for uploading PDFs and combines them, split them, convert to word or rotate them seamlessly using Streamlit and PyPDF2. The project also includes a Docker setup for containerized deployment.
+## 📄 PDF App
+PDF App is a lightweight Python-based web application designed to merge multiple PDF files into a single document. It provides a simple interface for uploading PDFs and combines them, split them, convert to word or rotate them seamlessly using Streamlit and PyPDF2. The project also includes a Docker setup for containerized deployment. 
 
-🚀 Features
+## Motivation
+This app allowes you to perform minimal alterations to PDFs in a private local environment.
+
+## 🚀 Features
 - Merge PDFs: Upload multiple PDF files and merge them into one.
 - Web Interface: Simple Streamlit-powered UI for easy interaction.
 - Dockerized: Ready-to-run Dockerfile for container deployment.
 
-🛠️ Installation
+## 🛠️ Installation
 Prerequisites
 - Python 3.8+
 - pip
@@ -22,7 +25,7 @@ Install Dependencies
 
 
 
-🧪 Usage
+## 🧪 Usage
 
 
 Run Locally
@@ -40,7 +43,7 @@ Run with Docker
 
 
 
-📂 Project Structure
+## 📂 Project Structure
 
 <img width="748" height="212" alt="image" src="https://github.com/user-attachments/assets/b21f8906-7938-4bbc-8fff-cf4b5e6a9222" />
 
