@@ -16,7 +16,8 @@ Clone the Repository
 
 
 Install Dependencies
-<img width="875" height="150" alt="image" src="https://github.com/user-attachments/assets/13f54f84-e49b-4cd9-b347-fe7b5f434a87" />
+<img width="751" height="130" alt="image" src="https://github.com/user-attachments/assets/61ad51e5-e964-4fad-96a8-52c9edac6f87" />
+
 
 
 
@@ -26,18 +27,21 @@ Install Dependencies
 Run Locally
 
 
-<img width="877" height="142" alt="image" src="https://github.com/user-attachments/assets/bbf8c2d4-4861-48ec-8fd3-1084b62a41e7" />
+<img width="750" height="125" alt="image" src="https://github.com/user-attachments/assets/40022e3d-38f9-4db2-9245-bae684a0fe04" />
+
 
 
 Visit http://localhost:5000 in your browser to access the app.
 Run with Docker
-<img width="864" height="157" alt="image" src="https://github.com/user-attachments/assets/01c18643-65e5-497b-b3c0-36466bc20ab0" />
+<img width="752" height="145" alt="image" src="https://github.com/user-attachments/assets/3a9691a9-9053-4f4b-9398-a72fba8c41d1" />
+
 
 
 
 
 📂 Project Structure
-<img width="872" height="252" alt="image" src="https://github.com/user-attachments/assets/3cd20b13-8d28-4dd6-9c00-2cb10cee0c35" />
+<img width="753" height="232" alt="image" src="https://github.com/user-attachments/assets/68edd45c-bd6e-4749-997f-1a12e7b9367a" />
+
 
 
 
