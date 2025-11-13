@@ -53,5 +53,5 @@ Run with Docker
 Feel free to fork the repository and submit pull requests. Issues and suggestions are welcome!
 
 📄 License
-This project is open-source. License details to be added.
+This project is open-source, MIT License.
 
